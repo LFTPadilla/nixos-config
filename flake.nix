@@ -21,10 +21,14 @@
     superfile.url = "github:yorukot/superfile";
     vicinae.url = "github:vicinaehq/vicinae";
     zen-browser.url = "github:0xc000022070/zen-browser-flake";
+
+    inputs.disko.url = "github:nix-community/disko";
+    inputs.disko.inputs.nixpkgs.follows = "nixpkgs";
+
   };
 
   outputs =
-    { nixpkgs, self, ... }@inputs:
+    { nixpkgs, self, disko, ... }@inputs:
     let
       username = "felipe";
       system = "x86_64-linux";
@@ -39,7 +43,10 @@
 
         aws = nixpkgs.lib.nixosSystem {
           inherit system;
-          modules = [ ./hosts/aws ];
+          modules = [
+            disko.nixosModules.disko
+            ./hosts/aws
+          ];
           specialArgs = {
             host = "nixos";
             inherit self inputs username;
