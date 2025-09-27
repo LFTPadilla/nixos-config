@@ -36,6 +36,29 @@
     in
     {
       nixosConfigurations = {
+
+        generic = nixpkgs.lib.nixosSystem {
+          system = "x86_64-linux";
+          modules = [
+            disko.nixosModules.disko
+            ./configuration.nix
+            ./hardware-configuration.nix
+          ];
+          specialArgs = {
+            host = "generic";
+            inherit self inputs username;
+          };
+        };
+
+        aws = nixpkgs.lib.nixosSystem {
+          inherit system;
+          modules = [ ./hosts/aws ];
+          specialArgs = {
+            host = "aws";
+            inherit self inputs username;
+          };
+        };
+
         desktop = nixpkgs.lib.nixosSystem {
           inherit system;
           modules = [ ./hosts/desktop ];
