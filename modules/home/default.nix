@@ -5,7 +5,7 @@
     ./audacious/audacious.nix         # music player
     ./bat.nix                         # better cat command
     ./browser.nix                     # firefox based browser
-    ./btop.nix                        # resouces monitor 
+    ./btop.nix                        # resouces monitor
     ./cava.nix                        # audio visualizer
     ./discord.nix                     # discord
     ./fastfetch/fastfetch.nix         # fetch tool
@@ -26,7 +26,7 @@
     ./obsidian.nix
     ./p10k/p10k.nix
     ./packages                        # other packages
-    ./retroarch.nix  
+    ./retroarch.nix
     ./rofi/rofi.nix                   # launcher
     ./scripts/scripts.nix             # personal scripts
     ./ssh.nix                         # ssh config
@@ -34,6 +34,7 @@
     ./swaylock.nix                    # lock screen
     ./swayosd.nix                     # brightness / volume wiget
     ./swaync/swaync.nix               # notification deamon
+    ./sunshine.nix                    # game streaming server
     # ./viewnior.nix                    # image viewer
     ./vicinae/vicinae.nix             # launcher
     ./vscodium                        # vscode fork
