@@ -4,8 +4,16 @@
 { config, lib, pkgs, modulesPath, ... }:
 
 {
-  imports = [ ];
+  imports = [
+    (modulesPath + "/installer/scan/not-detected.nix")
+    (modulesPath + "/profiles/qemu-guest.nix")
+    ./disk-config.nix
+  ];
 
+  boot.loader.grub = {
+    efiSupport = true;
+    efiInstallAsRemovable = true;
+  };
   boot.initrd.availableKernelModules = [ "nvme" ];
   boot.initrd.kernelModules = [ ];
   boot.kernelModules = [ ];
@@ -18,5 +26,10 @@
   networking.useDHCP = lib.mkDefault true;
   # networking.interfaces.enp39s0.useDHCP = lib.mkDefault true;
 
+  services.openssh.enable = true;
+  users.users.root.openssh.authorizedKeys.keys =
+  [
+    "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDOxue2KK9duORxcXOsvguCJ47NuT/lY6ZhSG+RroLa8isH+z+inXQfS/AGoUAPKQ2DSp4qNIMxcH4RoXTOZZFeYSqAnVcjbSQbq8aK5m0g2U41icOeGo/B5lSiSi2CWXEyombcA/1rU8coq0+XGhsemWpU0oaYIzH1ZvVMiRGc5uBhGUbP06jslWAmilyZc0zCRSBzKyLmUqKHibqrUBXvL4UN3MmJ10IZdjCoTXtUqc9KB52HDifEe3pnGlB4OkpscRmeAPs6mGi8qUDmL0DlKWjAIdZK0xTpd+dgHIMDg6iMJJUjE1lDZUM5zggj7g8RAN2sPQQS5gDM0SvOpY/N"
+  ] ++ (args.extraPublicKeys or []);
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
 }
