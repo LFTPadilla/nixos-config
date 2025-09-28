@@ -34,7 +34,7 @@
     ./swaylock.nix                    # lock screen
     ./swayosd.nix                     # brightness / volume wiget
     ./swaync/swaync.nix               # notification deamon
-    ./sunshine.nix                    # game streaming server
+    # ./sunshine.nix                    # game streaming server
     # ./viewnior.nix                    # image viewer
     ./vicinae/vicinae.nix             # launcher
     ./vscodium                        # vscode fork
