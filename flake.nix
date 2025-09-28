@@ -41,18 +41,6 @@
     {
       nixosConfigurations = {
 
-        aws = nixpkgs.lib.nixosSystem {
-          inherit system;
-          modules = [
-            disko.nixosModules.disko
-            ./hosts/aws
-          ];
-          specialArgs = {
-            host = "nixos";
-            inherit self inputs username;
-          };
-        };
-
         desktop = nixpkgs.lib.nixosSystem {
           inherit system;
           modules = [ ./hosts/desktop ];
